@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    const proxyUser1 = shallowReactive({
+      name: "小明",
+      car: {
+        color: "red"
+      }
+    })
+    // console.log(proxyUser1)
+    // proxyUser1.name += "小红"
+    // proxyUser1.car.color += "=="
+    // delete proxyUser1.name
+    // delete proxyUser1.car.color
+    const proxyUser2 = reactive({
+      name: "小明",
+      car: {
+        color: "red"
+      }
+    })
+    // console.log(proxyUser2)
+    // proxyUser2.name += "==="
+    // proxyUser2.car.color += "=="
+    // delete proxyUser2.name
+    // delete proxyUser2.car.color
+
+    const proxyUser3 = shallowReadonly({
+      name: "小明",
+      car: {
+        color: "red",
+        name: ["奔驰"]
+      }
+    })
+    // console.log(proxyUser3)
+    // console.log(proxyUser3.name)
+    // proxyUser3.name += "==="
+    // 读取到了数据，可以修改数据
+    // proxyUser3.car.color += "=="
+    // proxyUser3.car.name[0] = "奥迪"
+    // console.log(proxyUser3)
+    // delete proxyUser3.name
+    // 读取到了数据，可以删除属性
+    // delete proxyUser3.car.color
+    // console.log(proxyUser3)
+    
+    const proxyUser4 = readonly({
+      name: "小明",
+      car: {
+        color: "red"
+      }
+    })
+    // console.log(proxyUser4)
+    // proxyUser4.name += "==="
+    // proxyUser4.car.color += "=="
+    // console.log(proxyUser4)
+    // delete proxyUser4.name
+    // delete proxyUser4.car.color
+
+    const ref1 = shallowRef({
+      name: "小明",
+      car: {
+        color: "red"
+      }
+    })
+    // 可以读取
+    // console.log(ref1.value)
+    // 劫持到设置
+    // ref1.value = "==="
+    // 劫持到读取和设置
+    // ref1.value += "==="
+    // 劫持到读取没劫持到设置
+    // ref1.value.car.color = "=="
+    // console.log(ref1)
+
+    const ref2 = ref({
+      name: "小明",
+      car: {
+        color: "red"
+      }
+    })
+    // 可以读取
+    // console.log(ref2.value)
+    // 可以设置
+    // ref2.value = "==="
+    // 劫持到读取和设置
+    // ref2.value += "==="
+    // 劫持到读取和设置
+    // ref2.value.car = ""
+
+    // console.log(isRef(ref2))
+    // console.log(isReactive(reactive({})))
+    // console.log(isReadonly(readonly({})))
+    // console.log(isProxy(readonly({})))
+    console.log(isProxy(reactive({})))
+  </script>
+</body>
+</html>
